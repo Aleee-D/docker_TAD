@@ -1,0 +1,62 @@
+name: docker_tad_2026
+services:
+  dev_tad:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: container_docker_tad_2026
+    restart: unless-stopped
+#    depends_on:
+#      - db_test
+    volumes:
+      # Sincroniza la carpeta local 'src' con el contenedor (persistencia de tu código)
+      - ./src:/workspace
+      # Preserva el historial de comandos de bash entre sesiones y reinicios
+      - bashhistory:/home/vscode/.bash_history_dir
+    working_dir: /workspace
+    environment:
+      - HISTFILE=/home/vscode/.bash_history_dir/.bash_history
+      - DB_HOST=db_test
+      - DB_PORT=3306
+      - DB_NAME=taller_db
+      - DB_USER=taller
+      - DB_PASSWORD=prog
+    # Límite y Reserva de Memoria RAM (2 GB fijados)
+    mem_limit: 2g
+    mem_reservation: 2g
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 2G
+    # Opción de límite de disco (2 GB para la capa de escritura del contenedor)
+    # Nota: Requiere que el sistema de archivos del host soporte project quota (pquota)
+    storage_opt:
+      size: '2G'
+    # Puertos para desarrollo (8888 para Jupyter / 8000 para FastAPI o Flask si los usas)
+    ports:
+      - "8888:8888"
+      - "8000:8000"
+    stdin_open: true
+    tty: true
+    command: sleep infinity
+
+  #db_test:
+  #  image: mysql:8.0
+  #  container_name: mysql-db-container-test
+  #  restart: unless-stopped
+  #  environment:
+  #    MYSQL_ROOT_PASSWORD: root_prog
+  #    MYSQL_DATABASE: taller_db
+  #    MYSQL_USER: taller
+  #    MYSQL_PASSWORD: prog
+  #  ports:
+  #    - "3306:3306"
+  #  volumes:
+  #    - mysql_data:/var/lib/mysql
+
+volumes:
+  bashhistory:
+  mysql_data:
+

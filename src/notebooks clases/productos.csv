@@ -1,0 +1,7 @@
+producto,categoria,precio,stock
+Laptop,Tech,1500.0,10
+Mouse,Tech,25.0,150
+Monitor,Tech,800.0,25
+Teclado,Tech,120.0,80
+Auriculares,Audio,200.0,40
+Webcam,Tech,90.0,60
