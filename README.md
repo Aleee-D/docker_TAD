@@ -20,11 +20,11 @@ Incluye **Python 3.11**, **NumPy**, **Pandas** y soporte para **Jupyter Notebook
 ## 📁 Estructura del Proyecto
 
 ```text
-docker-python-dev/
+docker_TAD_2026/
 ├── .devcontainer/
 │   └── devcontainer.json   # Configuración para la extensión Dev Containers de VS Code
 ├── src/
-│   └── main.py             # Tu código fuente (se sincroniza en tiempo real con el contenedor)
+│   └── main.py             # Tu código fuente (se sincroniza en tiempo real con el contenedor en carpeta workspace)
 ├── .dockerignore           # Archivos ignorados por Docker para mantener la imagen ligera
 ├── Dockerfile              # Definición de la imagen del contenedor (Python + herramientas del sistema)
 ├── docker-compose.yml      # Orquestación de servicios, volúmenes y límites de RAM/Disco
@@ -51,7 +51,7 @@ docker-python-dev/
 Esta es la forma más productiva y moderna: VS Code se conecta directamente dentro del contenedor.
 
 1. Abre **Visual Studio Code**.
-2. Ve a `Archivo` -> `Abrir carpeta...` y selecciona la carpeta `docker-python-dev`.
+2. Ve a `Archivo` -> `Abrir carpeta...` y selecciona la carpeta `docker_TAD_2026`.
 3. VS Code detectará la configuración y mostrará una notificación en la esquina inferior derecha:
    > *"Folder contains a Dev Container configuration file. Reopen to develop in a container."*
    - Haz clic en **Reopen in Container** (Reabrir en contenedor).
@@ -72,11 +72,11 @@ Si estás en otra máquina o no usas la extensión de VS Code, puedes levantarlo
    ```
 2. **Ejecutar el script de prueba:**
    ```bash
-   docker compose exec python-dev python /workspace/main.py
+   docker compose exec container_docker_tad_2026 python /workspace/main.py
    ```
 3. **Abrir una terminal interactiva dentro del contenedor:**
    ```bash
-   docker compose exec python-dev bash
+   docker compose exec container_docker_tad_2026 bash
    ```
 4. **Detener el contenedor cuando termines:**
    ```bash
@@ -122,7 +122,7 @@ Para asegurar que cualquiera que clone o use el proyecto tenga las mismas librer
 - **Cómo funciona:** En Linux, macOS y Windows (WSL2), Docker utiliza los *cgroups* del kernel. Si los procesos de Python superan los 2 GB de memoria asignada, el sistema de cuotas actuará evitando que consuma más RAM del equipo host.
 - Puedes verificarlo en tiempo real ejecutando:
   ```bash
-  docker stats python-dev-container
+  docker stats container_docker_tad_2026
   ```
 
 ### 💾 Espacio de Disco (2 GB)
