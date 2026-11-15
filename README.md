@@ -25,6 +25,7 @@ docker-python-dev/
 │   └── devcontainer.json   # Configuración para la extensión Dev Containers de VS Code
 ├── src/
 │   └── main.py             # Tu código fuente (se sincroniza en tiempo real con el contenedor)
+│   └── notebooks clases docker # El código de las clases que venimos realizando
 ├── .dockerignore           # Archivos ignorados por Docker para mantener la imagen ligera
 ├── Dockerfile              # Definición de la imagen del contenedor (Python + herramientas del sistema)
 ├── docker-compose.yml      # Orquestación de servicios, volúmenes y límites de RAM/Disco
@@ -157,4 +158,12 @@ Ejecuta desde la terminal del contenedor:
 python src/test_mysql.py
 ```
 Este script se conecta a la base de datos, crea una tabla de ejemplo con Pandas (`df.to_sql`), inserta registros y los consulta (`pd.read_sql`).
+
+### Base de Datos de Pueba:
+Dentro de notebook clases docker está la base de datos de prueba
+├── src/
+│   └── notebooks clases docker
+│       └── world-db
+│           └── world.sql
+
 
