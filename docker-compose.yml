@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
     container_name: container_docker_tad_2026
     restart: unless-stopped
-#    depends_on:
-#      - db_test
+    depends_on:
+      - db_test
     volumes:
       # Sincroniza la carpeta local 'src' con el contenedor (persistencia de tu código)
       - ./src:/workspace
@@ -42,19 +42,21 @@ services:
     tty: true
     command: sleep infinity
 
-  #db_test:
-  #  image: mysql:8.0
-  #  container_name: mysql-db-container-test
-  #  restart: unless-stopped
-  #  environment:
-  #    MYSQL_ROOT_PASSWORD: root_prog
-  #    MYSQL_DATABASE: taller_db
-  #    MYSQL_USER: taller
-  #    MYSQL_PASSWORD: prog
-  #  ports:
-  #    - "3306:3306"
-  #  volumes:
-  #    - mysql_data:/var/lib/mysql
+  db_test:
+    image: mysql:8.0
+    container_name: mysql-db-container-test
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_prog
+      MYSQL_DATABASE: taller_db
+      MYSQL_USER: taller
+      MYSQL_PASSWORD: prog
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # Sincroniza la carpeta local 'src' con el contenedor (persistencia de tu código)
+      - ./src:/workspace
 
 volumes:
   bashhistory:
