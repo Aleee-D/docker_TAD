@@ -161,9 +161,10 @@ Este script se conecta a la base de datos, crea una tabla de ejemplo con Pandas 
 
 ### Base de Datos de Pueba:
 Dentro de notebook clases docker está la base de datos de prueba
+```text
 ├── src/
 │   └── notebooks clases docker
 │       └── world-db
 │           └── world.sql
-
+```
 
